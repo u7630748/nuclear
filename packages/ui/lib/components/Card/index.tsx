@@ -6,6 +6,8 @@ import { Dropdown, DropdownItemProps, DropdownHeaderProps, DropdownDividerProps 
 import artPlaceholder from '../../../resources/media/art_placeholder.png';
 import common from '../../common.scss';
 import styles from './styles.scss';
+import ResizeObserver from 'resize-observer-polyfill';
+global.ResizeObserver = ResizeObserver;
 
 export type CardMenuEntry = {
   type: 'header' | 'item' | 'divider';
@@ -52,7 +54,9 @@ const Card: React.FC<CardProps> = ({
   }, []);
 
   useEffect(() => {
-    if (!withMenu) return;
+    if (!withMenu) {
+      return;
+    }
 
     const observer = new MutationObserver(updateMenuPosition);
     const resizeObserver = new ResizeObserver(updateMenuPosition);
@@ -83,7 +87,9 @@ const Card: React.FC<CardProps> = ({
   const handleMouseLeave = () => setIsMenuVisible(false);
 
   const renderMenu = () => {
-    if (!withMenu || !isMenuVisible) return null;
+    if (!withMenu || !isMenuVisible) {
+      return null;
+    }
 
     return ReactDOM.createPortal(
       <div 
@@ -103,12 +109,12 @@ const Card: React.FC<CardProps> = ({
             {_.isArray(menuEntries) && !_.isEmpty(menuEntries) &&
               menuEntries.map((entry, i) => {
                 switch (entry.type) {
-                  case 'header':
-                    return <Dropdown.Header key={`header-${i}`} {...entry.props} />;
-                  case 'item':
-                    return <Dropdown.Item key={`item-${i}`} {...entry.props} />;
-                  case 'divider':
-                    return <Dropdown.Divider key={`divider-${i}`} />;
+                case 'header':
+                  return <Dropdown.Header key={`header-${i}`} {...entry.props} />;
+                case 'item':
+                  return <Dropdown.Item key={`item-${i}`} {...entry.props} />;
+                case 'divider':
+                  return <Dropdown.Divider key={`divider-${i}`} />;
                 }
               })
             }
