@@ -65,26 +65,8 @@ exports[`Album view container should display favorite albums 1`] = `
                 class="card animated"
               >
                 <div
-                  aria-expanded="false"
-                  class="ui basic dropdown menu_button"
-                  role="listbox"
-                  tabindex="0"
-                >
-                  <i
-                    aria-hidden="true"
-                    class="ellipsis vertical icon"
-                  />
-                  <div
-                    class="menu transition"
-                  >
-                    <div
-                      class="item"
-                      role="option"
-                    >
-                      Remove
-                    </div>
-                  </div>
-                </div>
+                  class="menu_placeholder"
+                />
                 <div
                   class="thumbnail"
                 >

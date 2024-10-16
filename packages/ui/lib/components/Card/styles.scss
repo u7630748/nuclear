@@ -4,13 +4,13 @@
   width: 100%;
   max-width: 240px;
   padding: 1rem;
+  position: relative;
 
   .card {
     @include roundCorners;
     position: relative;
     display: flex;
     flex-flow: column;
-
     box-shadow: 0 0.25rem 0.5rem 0 rgba(0, 0, 0, 0.2);
     background-color: $background2;
     transition: $short-duration ease-in-out;
@@ -23,6 +23,15 @@
       .overlay {
         opacity: 1;
       }
+    }
+
+    .menu_placeholder {
+      position: absolute;
+      top: 0.5em;
+      right: 0.5em;
+      width: 24px;
+      height: 24px;
+      z-index: 2;
     }
 
     .overlay {
@@ -60,11 +69,21 @@
         color: rgba($white, 0.6);
       }
     }
-    .menu_button {
-      position: absolute;
-      z-index: 10;
-      margin: 1em;
-      align-self: flex-end;
+  }
+}
+
+.portal_menu {
+  z-index: 9999; // Ensure it's always on top
+
+  .menu_button {
+    background: none;
+    border: none;
+    color: $white;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+
+    &:hover {
+      opacity: 1;
     }
   }
 }
